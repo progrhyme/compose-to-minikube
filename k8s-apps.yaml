@@ -1,0 +1,79 @@
+# ----------------------------------------
+# db/postgres
+# ----------------------------------------
+kind: Service
+apiVersion: v1
+metadata:
+  name: db
+spec:
+  selector:
+    app: postgres
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: postgres
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: db
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: "postgres:9.5"
+        ports:
+        - name: postgres
+          containerPort: 5432
+        envFrom:
+        - configMapRef:
+            name: db-config
+---
+# ----------------------------------------
+# app/rails
+# ----------------------------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: app
+spec:
+  selector:
+    app: rails
+  ports:
+  - protocol: "TCP"
+    port: 80
+    targetPort: webapp
+  type: NodePort
+  #type: LoadBalancer
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: app
+spec:
+  selector:
+    matchLabels:
+      app: rails
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rails
+    spec:
+      containers:
+      - name: reagent-app
+        image: "progrhyme/compose2minikube:v1"
+        ports:
+        - name: webapp
+          containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: app-config

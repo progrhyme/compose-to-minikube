@@ -1,24 +1,23 @@
-# README
+# compose-to-minikube
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a sample Rails application which is run by both
+[docker-compose](https://docs.docker.com/compose/) and
+[Kubernetes](https://kubernetes.io/).
 
-Things you may want to cover:
+# Run Application
 
-* Ruby version
+## docker-compose
 
-* System dependencies
+```sh
+docker-compose up
+docker-compose exec rails rake db:migrate
+```
 
-* Configuration
+## Kubernetes
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```sh
+kubectl apply -f k8s-config.yaml
+kubectl apply -f k8s-apps.yaml
+kubectl get pods
+kubectl exec -it app-XXXXXXXXX-XXXXX rake db:migrate # Specify your pod's name
+```

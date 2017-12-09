@@ -1,0 +1,23 @@
+# Editor artifacts
+*.sw[pon]
+
+# local env by direnv
+\.envrc
+
+# Bundler config.
+/.bundle
+
+# Default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# All logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+/node_modules
+/yarn-error.log
+
+.byebug_history

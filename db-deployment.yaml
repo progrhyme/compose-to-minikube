@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.5.0 (999278f)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: db
+  name: db
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: db
+    spec:
+      containers:
+      - env:
+        - name: POSTGRES_DB
+          value: my_app_development
+        - name: POSTGRES_PASSWORD
+          value: password
+        - name: POSTGRES_USER
+          value: myapp
+        image: postgres:9.5
+        name: db
+        resources: {}
+      restartPolicy: Always
+status: {}

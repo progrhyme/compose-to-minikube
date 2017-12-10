@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.5.0 (999278f)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: rails
+  name: rails
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: rails
+    spec:
+      containers:
+      - env:
+        - name: DATABASE_URL
+          value: postgres://myapp:password@db:5432/my_app_development
+        image: progrhyme/compose2minikube:v1
+        name: rails
+        ports:
+        - containerPort: 3000
+        resources: {}
+      restartPolicy: Always
+status: {}

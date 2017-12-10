@@ -1,9 +1,6 @@
 # Editor artifacts
 *.sw[pon]
 
-# local env by direnv
-\.envrc
-
 # Bundler config.
 /.bundle
 

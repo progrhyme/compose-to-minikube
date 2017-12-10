@@ -31,3 +31,7 @@ kompose up
 kubectl get pods
 kubectl exec -it rails-XXXXXXXXX-XXXXX rake db:migrate # Specify your pod's name
 ```
+
+# License
+
+The MIT License (MIT)

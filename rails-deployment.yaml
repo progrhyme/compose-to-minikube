@@ -21,7 +21,7 @@ spec:
       - env:
         - name: DATABASE_URL
           value: postgres://myapp:password@db:5432/my_app_development
-        image: progrhyme/compose2minikube:v1
+        image: localhost:5000/progrhyme/compose2minikube:v1
         name: rails
         ports:
         - containerPort: 3000

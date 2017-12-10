@@ -4,6 +4,25 @@ This is a sample Rails application which is run by both
 [docker-compose](https://docs.docker.com/compose/) and
 [Kubernetes](https://kubernetes.io/).
 
+# Prerequisites
+
+- [Docker](https://www.docker.com/)
+- Kubernetes cluster. [Minikube](https://github.com/kubernetes/minikube) is handy for this sample.
+- [kubectl](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-options/)
+- Optional: [kompose](http://kompose.io)
+
+# Prepare Local Registry
+
+Use https://hub.docker.com/_/registry/ like following command:
+
+```sh
+docker run -d -p 5000:5000 \
+  -v ~/.dockerregistry:/var/lib/registry \
+  --restart always \
+  --name registry \
+  registry:2
+```
+
 # Run Application
 
 ## docker-compose
@@ -24,7 +43,7 @@ kubectl get pods
 kubectl exec -it app-XXXXXXXXX-XXXXX rake db:migrate # Specify your pod's name
 ```
 
-### (2) By [kompose](http://kompose.io)
+### (2) By kompose
 
 ```sh
 kompose up

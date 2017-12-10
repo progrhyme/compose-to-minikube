@@ -70,7 +70,7 @@ spec:
     spec:
       containers:
       - name: reagent-app
-        image: "progrhyme/compose2minikube:v1"
+        image: "localhost:5000/progrhyme/compose2minikube:v1"
         ports:
         - name: webapp
           containerPort: 3000

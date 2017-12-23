@@ -51,6 +51,10 @@ kubectl get pods
 kubectl exec -it rails-XXXXXXXXX-XXXXX rake db:migrate # Specify your pod's name
 ```
 
+# See Also
+
+- [Docker ComposeからMinikube + Komposeに移行してみよう - Qiita](https://qiita.com/progrhyme/items/116948c9fef37f3e995b)
+
 # License
 
 The MIT License (MIT)
